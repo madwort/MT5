@@ -326,6 +326,9 @@ function loadSongList() {
                 text: songName
             }).appendTo(s);
         });
+        // Load Rod's thing!
+        loadSong('Kaizo Snare');
+
     };
     xhr.send();
 }
@@ -361,10 +364,13 @@ function loadSong(songName) {
             var span = document.createElement('tr');
             span.innerHTML = '<td class="trackBox" style="height : ' + SAMPLE_HEIGHT + 'px">' +
                 "<progress class='pisteProgress' id='progress" + trackNumber + "' value='0' max='100' style='width : " + SAMPLE_HEIGHT + "px' ></progress>" +
-                instrument.name + '<div style="float : right;">' +
+                // instrument.name +
+                '<div style="float : right; ">' +
                 "<button class='mute' id='mute" + trackNumber + "' onclick='muteUnmuteTrack(" + trackNumber + ");'><span class='glyphicon glyphicon-volume-up'></span></button> " +
-                "<button class='solo' id='solo" + trackNumber + "' onclick='soloNosoloTrack(" + trackNumber + ");'><img src='../img/earphones.png' /></button></div>" +
-                "<span id='volspan'><input type='range' class = 'volumeSlider custom' id='volume" + trackNumber + "' min='0' max = '100' value='100' oninput='setVolumeOfTrackDependingOnSliderValue(" + trackNumber + ");'/></span><td>";
+                "<button class='solo' id='solo" + trackNumber + "' onclick='soloNosoloTrack(" + trackNumber + ");'><img src='../img/earphones.png' /></button>" + 
+                "</div>" +
+                "<span id='volspan' style='display: none;'><input type='range' class = 'volumeSlider custom' id='volume" + trackNumber + "' min='0' max = '100' value='100' oninput='setVolumeOfTrackDependingOnSliderValue(" + trackNumber + ");'/></span>" +
+                "<td>";
 
             divTrack.appendChild(span);
 
@@ -380,6 +386,8 @@ function loadSong(songName) {
 
         // Loads all samples for the currentSong
         loadAllSoundSamples();
+
+        soloNosoloTrack(0);        
     };
     xhr.send();
 }
@@ -505,15 +513,15 @@ function showWelcomeMessage() {
     View.frontCanvasContext.save();
     View.frontCanvasContext.font = '14pt Arial';
     View.frontCanvasContext.fillStyle = 'white';
-    View.frontCanvasContext.fillText('Welcome to MT5, start by choosing a song ', 50, 200);
-    View.frontCanvasContext.fillText('in this drop down menu! ', 50, 220);
-    View.frontCanvasContext.fillText('Documentation and HowTo in the ', 315, 100);
-    View.frontCanvasContext.fillText('first link of the Help tab there! ', 315, 120);
+    // View.frontCanvasContext.fillText('Click Kaizo Snare here!', 50, 200);
+    // View.frontCanvasContext.fillText('in this drop down menu! ', 50, 220);
+    // View.frontCanvasContext.fillText('Documentation and HowTo in the ', 315, 100);
+    // View.frontCanvasContext.fillText('first link of the Help tab there! ', 315, 120);
 
     // Draws an arrow in direction of the drop down menu
     // x1, y1, x2, y2, width of arrow, color
-    drawArrow(View.frontCanvasContext, 180, 170, 10, 10, 10, 'lightGreen');
-    drawArrow(View.frontCanvasContext, 450, 80, 450, 10, 10, 'lightGreen');
+    // drawArrow(View.frontCanvasContext, 180, 170, 10, 10, 10, 'lightGreen');
+    // drawArrow(View.frontCanvasContext, 450, 80, 450, 10, 10, 'lightGreen');
 
     View.frontCanvasContext.restore();
 }
@@ -653,8 +661,7 @@ function playAllTracks(startTime) {
 }
 
 function setVolumeOfTrackDependingOnSliderValue(nbTrack) {
-    var fraction = $("#volume" + nbTrack).val() / 100;
-    currentSong.setVolumeOfTrack(fraction * fraction, nbTrack);
+    currentSong.setVolumeOfTrack(1, nbTrack);
 }
 
 function stopAllTracks() {
@@ -705,7 +712,26 @@ function setMasterVolume(val) {
     }
 }
 
+function trackSwitch(){
+  // if we haven't played the song yet, we will have errors because it's not 
+  // setup the web audio stuff yet
+  if (currentSong.trackVolumeNodes[0] === undefined) return;
 
+  // We have hard-coded two tracks - 0 & 1 - flip them over!
+  soloNosoloTrack(0);
+  soloNosoloTrack(1);
+
+  var s = document.querySelector("#solo0");
+  var currentTrack = currentSong.tracks[0];
+  var ts = $("#trackSwitch");
+
+  // Is the original track in solo mode ?
+  if (currentTrack.solo) {
+    ts.text("Play processed");    
+  } else {
+    ts.text("Play original");
+  }
+}
 
 function soloNosoloTrack(trackNumber) {
     var s = document.querySelector("#solo" + trackNumber);

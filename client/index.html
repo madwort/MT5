@@ -77,7 +77,7 @@
                     <button id="bstop" onclick="stopAllTracks();"  type="button" class="btn btn-default btn-lg" disabled>
                       <span class="glyphicon glyphicon-stop"></span>
                     </button>
-                    <button id="bstop" onclick="addNewTrackForRecord();"  type="button" class="btn btn-default btn-lg" disabled>
+                    <button id="brecordTrack" onclick="addNewTrackForRecord();"  type="button" class="btn btn-default btn-lg" disabled>
                       <span class="glyphicon glyphicon-record"></span>
                     </button>
                      <button id="brecordMix" onclick="toggleRecordMix();"type="button" class="btn btn-default btn-lg" style="font-size: 10px;
@@ -104,8 +104,12 @@ padding: 0;" disabled>
                       <span class="glyphicon glyphicon-repeat"></span>
                     </button>
 			    </td></tr>
-			    <tr><td>
+			    <tr  style="display: none;"><td>
 			        <div id="songs" class="styled-select"></div>
+			        <br/>
+			    </td></tr>
+			    <tr><td>
+			        <button id="trackSwitch" onclick="trackSwitch();" type="button" class="btn btn-default btn-lg" style="width: 15em;">Switch to processed</button>
 			        <br/>
 			    </td></tr>
 			</table>
@@ -123,7 +127,7 @@ padding: 0;" disabled>
     		</div>
     		<div id="canvass">
     			<div style="position: relative;">
-    				<canvas id="myCanvas" width="602" height="400" style="position: absolute; left: 0; top: 0; z-index: 0;"></canvas>
+    				<canvas id="myCanvas" width="800" height="400" style="position: absolute; left: 0; top: 0; z-index: 0;"></canvas>
     				<canvas id="frontCanvas"                       style="position: absolute; left: 0; top: 0; z-index: 1;"></canvas>
     			</div>
     		</div>
