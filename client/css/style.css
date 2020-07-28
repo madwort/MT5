@@ -1,15 +1,15 @@
 body {
-    margin: 0 3%;
-    background: black;
+    background: white;
 }
 
 #app {
-    width: 980px;
+    width: 650px;
     margin: auto;
     background: #EEE;
 }
 
 #console {
+  display: none;
     position: fixed;
     top: 0;
     height: 200px;
@@ -40,7 +40,7 @@ body {
     position: fixed;
     top: 0;
     height: 200px;
-    width: 680px;
+    width: 650px;
     text-align: center;
     background: #EEE;
     border: 1px solid grey;
@@ -81,13 +81,13 @@ body {
     height: 150px;
     object-fit: cover;
     object-position: top;
-    width: 982px;
+    width: 650px;
 }
 
 #scroll {
     position: absolute;
     top: 200px;
-    width: 980px;
+    width: 650px;
     background: #EEE;
 }
 
@@ -172,10 +172,6 @@ a[data-toggle=tab] {
 }
 
 /***** for sliders *****/
-
-body {
-    margin-left: 3%;
-}
 
 .touch {
     width: 40%;
