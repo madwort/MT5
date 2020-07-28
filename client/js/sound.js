@@ -25,7 +25,7 @@ var selectionForLoop = {
 
 
 // Sample size in pixels
-var SAMPLE_HEIGHT = 75;
+var SAMPLE_HEIGHT = 150;
 
 // Useful for memorizing when we paused the song
 var lastTime = 0;
@@ -326,6 +326,7 @@ function loadSongList() {
                 text: songName
             }).appendTo(s);
         });
+
         // Load Rod's thing!
         loadSong('Kaizo Snare');
 
@@ -724,13 +725,20 @@ function trackSwitch(){
   var s = document.querySelector("#solo0");
   var currentTrack = currentSong.tracks[0];
   var ts = $("#trackSwitch");
+  oneTrackCanvas = $('#myCanvas');
 
   // Is the original track in solo mode ?
   if (currentTrack.solo) {
-    ts.text("Play processed");    
+    caption = "Play processed";
+    position = 'top';
   } else {
-    ts.text("Play original");
+    caption = "Play original";
+    position = 'bottom';
   }
+  
+  ts.text(caption);
+  oneTrackCanvas.css('object-position', position);
+  
 }
 
 function soloNosoloTrack(trackNumber) {

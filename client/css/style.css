@@ -56,6 +56,7 @@ body {
 }
 
 #trackControl {
+    display: none;
     float: left;
     width: 38px;
     overflow: hidden;
@@ -72,11 +73,15 @@ body {
 }
 
 #canvass {
-    margin-left: 40px;
+/*    margin-left: 40px;*/
 }
 
 #myCanvas {
     background: black;
+    height: 150px;
+    object-fit: cover;
+    object-position: top;
+    width: 982px;
 }
 
 #scroll {
