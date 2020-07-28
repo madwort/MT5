@@ -439,7 +439,7 @@ function toFixed(value, precision) {
 
 function animateTime() {
     // clear canvas
-    View.frontCanvasContext.clearRect(0, 0, window.View.masterCanvas.width, window.View.masterCanvas.height);
+    View.frontCanvasContext.clearRect(0, 0, window.View.frontCanvas.width, window.View.frontCanvas.height);
 
     // Draw something only if a song has been loaded
     if (currentSong !== undefined) {
@@ -476,7 +476,7 @@ function animateTime() {
                 View.frontCanvasContext.lineWidth = 3;
                 View.frontCanvasContext.beginPath();
                 View.frontCanvasContext.moveTo(currentXTimeline, 0);
-                View.frontCanvasContext.lineTo(currentXTimeline, window.View.masterCanvas.height);
+                View.frontCanvasContext.lineTo(currentXTimeline, window.View.frontCanvas.height);
                 View.frontCanvasContext.stroke();
 
                 currentSong.elapsedTimeSinceStart += delta;
@@ -617,7 +617,7 @@ function drawSampleImage(imageURL, trackNumber, trackName) {
 
 function resizeSampleCanvas(numTracks) {
     window.View.masterCanvas.height = SAMPLE_HEIGHT * numTracks;
-    window.View.frontCanvas.height = window.View.masterCanvas.height;
+    window.View.frontCanvas.height = SAMPLE_HEIGHT;
 }
 
 function clearAllSampleDrawings() {
