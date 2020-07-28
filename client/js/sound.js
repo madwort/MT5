@@ -230,7 +230,8 @@ function loadAllSoundSamples() {
 }
 
 function drawTrack(decodedBuffer, trackNumber) {
-
+  if (trackNumber < 2) {
+    // draw tracks 0,1 as usual
     console.log("drawTrack : let's draw sample waveform for track No" + trackNumber + " named " +
         currentSong.tracks[trackNumber].name);
 
@@ -242,7 +243,7 @@ function drawTrack(decodedBuffer, trackNumber) {
     var y = trackNumber * SAMPLE_HEIGHT;
     // First parameter = Y position (top left corner)
     // second = height of the sample drawing
-    waveformDrawer.drawWave(y, SAMPLE_HEIGHT);
+    waveformDrawer.drawWave(y, SAMPLE_HEIGHT, true);
 
     View.masterCanvasContext.strokeStyle = "white";
     View.masterCanvasContext.strokeRect(x, y, window.View.masterCanvas.width, SAMPLE_HEIGHT);
@@ -250,6 +251,24 @@ function drawTrack(decodedBuffer, trackNumber) {
     View.masterCanvasContext.font = '14pt Arial';
     View.masterCanvasContext.fillStyle = 'white';
     View.masterCanvasContext.fillText(trackName, x + 10, y + 20);
+  } else {
+    // draw track 2 as outline overlay on track 1
+    console.log("drawTrack : let's draw sample waveform for track No" + trackNumber + " named " +
+        currentSong.tracks[trackNumber].name);
+
+    var trackName = currentSong.tracks[trackNumber].name;
+    //trackName = trackName.slice(trackName.lastIndexOf("/")+1, trackName.length-4);
+
+    waveformDrawer.init(decodedBuffer, View.masterCanvas, 'white');
+    var x = 0;
+    var y = 1 * SAMPLE_HEIGHT;
+    // First parameter = Y position (top left corner)
+    // second = height of the sample drawing
+    waveformDrawer.drawWave(y, SAMPLE_HEIGHT, false);
+
+
+  }
+
 }
 
 function finishedLoading(bufferList) {
@@ -616,7 +635,8 @@ function drawSampleImage(imageURL, trackNumber, trackName) {
 }
 
 function resizeSampleCanvas(numTracks) {
-    window.View.masterCanvas.height = SAMPLE_HEIGHT * numTracks;
+    // hardcode to two tracks, because we are going to overlay the third track!
+    window.View.masterCanvas.height = SAMPLE_HEIGHT * 2;
     window.View.frontCanvas.height = SAMPLE_HEIGHT;
 }
 

@@ -33,7 +33,8 @@ function WaveformDrawer() {
     // Fist parameter : wjere to start vertically in the canvas (useful when we draw several
     // waveforms in a single canvas)
     // Second parameter = height of the sample
-    this.drawWave = function (startY, height) {
+      // Third parameter = boolean, whether to fill the waveform (if not, then stroke)
+    this.drawWave = function (startY, height, fill) {
         var ctx = this.canvas.getContext('2d');
         ctx.save();
         ctx.translate(0, startY);
@@ -70,7 +71,11 @@ function WaveformDrawer() {
 
         ctx.lineTo(width, halfH);
 
-        ctx.fill();
+        if (fill) {
+          ctx.fill();
+        } else {
+          ctx.stroke();
+        }
 
         ctx.restore();
     };
