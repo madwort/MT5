@@ -253,22 +253,28 @@ function drawTrack(decodedBuffer, trackNumber) {
     View.masterCanvasContext.fillText(trackName, x + 10, y + 20);
   } else {
     // draw track 2 as outline overlay on track 1
-    console.log("drawTrack : let's draw sample waveform for track No" + trackNumber + " named " +
-        currentSong.tracks[trackNumber].name);
-
-    var trackName = currentSong.tracks[trackNumber].name;
-    //trackName = trackName.slice(trackName.lastIndexOf("/")+1, trackName.length-4);
-
-    waveformDrawer.init(decodedBuffer, View.masterCanvas, 'white');
-    var x = 0;
-    var y = 1 * SAMPLE_HEIGHT;
-    // First parameter = Y position (top left corner)
-    // second = height of the sample drawing
-    waveformDrawer.drawWave(y, SAMPLE_HEIGHT, false);
-
-
+    // TODO: this has a race condition - most of the time track 2 draws over the top 
+    // of track 1, but not always!
+    // Hack the probability in our favour by setting a .1s timeout
+    // HAAAAAAACCCKKKKYYYYY 
+    setTimeout(drawController, 100, decodedBuffer, trackNumber);
   }
+}
 
+function drawController(decodedBuffer, trackNumber) {
+  console.log("drawTrack : let's draw sample waveform for track No" + trackNumber + " named " +
+      currentSong.tracks[trackNumber].name);
+
+  var trackName = currentSong.tracks[trackNumber].name;
+  //trackName = trackName.slice(trackName.lastIndexOf("/")+1, trackName.length-4);
+
+  waveformDrawer.init(decodedBuffer, View.masterCanvas, 'white');
+  var x = 0;
+  var y = 1 * SAMPLE_HEIGHT;
+  // First parameter = Y position (top left corner)
+  // second = height of the sample drawing
+  waveformDrawer.drawWave(y, SAMPLE_HEIGHT, false);
+  
 }
 
 function finishedLoading(bufferList) {
