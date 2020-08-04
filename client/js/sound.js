@@ -494,7 +494,7 @@ function animateTime() {
                 currentXTimeline = currentSong.elapsedTimeSinceStart * window.View.masterCanvas.width / totalTime;
 
                 // draw frequencies that dance with the music
-                drawFrequencies();
+                // drawFrequencies();
 
                 // Draw time bar
                 View.frontCanvasContext.strokeStyle = "lightBlue";
