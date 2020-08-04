@@ -39,7 +39,7 @@ body {
 #masterTools {
     position: fixed;
     top: 0;
-    height: 200px;
+    height: 110px;
     width: 650px;
     text-align: center;
     background: #EEE;
@@ -86,7 +86,7 @@ body {
 
 #scroll {
     position: absolute;
-    top: 200px;
+    top: 110px;
     width: 650px;
     background: #EEE;
 }
