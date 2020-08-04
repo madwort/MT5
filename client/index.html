@@ -82,7 +82,8 @@
                      <button id="brecordMix" onclick="toggleRecordMix();"type="button" class="btn btn-default btn-lg" style="font-size: 10px;
 padding: 0;" disabled>Record mix
                     </button>
-			        <button id="loopStart" onclick="setLoopStart();" type="button" class="btn btn-default btn-lg" style="font-size: 10px;
+                  <span id="loopBox">
+                    <button id="loopStart" onclick="setLoopStart();" type="button" class="btn btn-default btn-lg" style="font-size: 10px;
 padding: 0;" disabled>
                       Start Loop
                     </button>
@@ -100,6 +101,7 @@ padding: 0;" disabled>
                     <button onclick="loopOnOff();" id="loopOnOff" type="button" class="btn btn-default btn-lg" disabled>
                       <span class="glyphicon glyphicon-repeat"></span>
                     </button>
+                </span>
 			        <div id="songs" class="styled-select" style="display: none;"></div>
             
 			        <button id="trackSwitch" onclick="trackSwitch();" type="button" class="btn btn-default btn-lg" style="width: 7em;">Post-Fader</button>
