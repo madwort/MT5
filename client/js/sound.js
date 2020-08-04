@@ -484,7 +484,7 @@ function animateTime() {
             View.frontCanvasContext.fillStyle = 'white';
             View.frontCanvasContext.font = '14pt Arial';
             //View.frontCanvasContext.fillText(toFixed(currentSong.elapsedTimeSinceStart, 1) + "s", 180, 20);
-            View.frontCanvasContext.fillText((currentSong.elapsedTimeSinceStart + "").toFormattedTime() + "s", 180, 20);
+            View.frontCanvasContext.fillText((currentSong.elapsedTimeSinceStart + "").toFormattedTime() + "s", 5, 144);
             //console.log("dans animate");
 
             // at least one track has been loaded
