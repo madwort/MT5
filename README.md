@@ -3,6 +3,8 @@
 A hacked version of MT5 that is specifically to play [Rod](https://rodrigoconstanzo.com)'s
 Kaizo Snare files.
 
+![Kaizo Snare display](kaizo-snare-screenshot.png)
+
 Original code at https://github.com/squallooo/MT5 , hacks done by [MADWORT](https://www.madwort.co.uk)
 
 ## Install (ubuntu)
@@ -13,3 +15,4 @@ $ npm install
 # TWEAK CONFIG IN server.js 
 $ node server.js
 ```
+
